@@ -1,4 +1,5 @@
-@import 'TopBar.css';
+@import './styles/TopBar.css';
+@import './styles/App.css';
 
 body {
   margin: 0;
