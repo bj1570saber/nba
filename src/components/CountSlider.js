@@ -10,6 +10,8 @@ export class CountSlider extends React.Component {
     this.setState({
       inputValue: value,
     });
+    {/*call an ancester's function to change ancester's prop */}
+    this.props.handleCountSliderChange(value);
   };
 
   render() {
