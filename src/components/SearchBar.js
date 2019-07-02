@@ -15,7 +15,7 @@ export class SearchBar extends React.Component {
         this.setState({
             dataSource: !value ? [] : nba.searchPlayers(value).map(
                 ({fullName, playerId}) => (
-                    <Option key={playerId} >
+                    <Option key={playerId} value={fullName}>
                         <img
                             className="player-option-image"
                             src={`${PROFILE_PIC_URL_PREFIX}/${playerId}.png`}
@@ -29,8 +29,9 @@ export class SearchBar extends React.Component {
         });
     };
 
-    onSelect = (value) => {
-        console.log('onSelect', value);
+    onSelect = (value, {key: playerId}) => {
+        console.log('onSelect', value, playerId);
+        this.props.loadPlayerInfo(playerId);
     }
 
     render() {
@@ -43,6 +44,7 @@ export class SearchBar extends React.Component {
                 onSelect={this.onSelect}
                 onSearch={this.handleSearch}
                 placeholder="Search NBA Player"
+                optionLabelProp="value"
             >
                 <Input suffix={<Icon type="search" />} />
             </AutoComplete>
